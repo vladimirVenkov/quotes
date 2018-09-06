@@ -7,6 +7,8 @@ import java.util.List;
 public interface QuoteService {
     List<Quote> getAllQuotes();
 
+    Quote getQuoteById(int id);
+
     void deleteQuote(int id);
 
     void editQuote(int id, Quote quote);

@@ -6,13 +6,14 @@ import java.util.List;
 
 public interface QuoteRepository {
 
+    void createQuote(Quote quote);
+
     List<Quote> getAllQuotes();
 
-   // void deleteQuote(int id);
+    Quote getQuoteById(int id);
 
     void editQuote(int id, Quote quote);
 
-    void createQuote(Quote quote);
-
+    void deleteQuote(int id);
 
 }

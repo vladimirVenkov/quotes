@@ -69,13 +69,33 @@ public class InMemoryQuoteRepositoryImpl implements QuoteRepository {
     }
 
     @Override
+    public Quote getQuoteById(int id) {
+        return quotes.stream().filter(quote -> quote.getId() == id)
+                .findFirst().orElse(null);
+    }
+
+    @Override
     public void editQuote(int id, Quote quote) {
-        quotes.set(id, quote);
+        Quote quoteToEdit = getQuote(id);
+        int index = quotes.indexOf(quoteToEdit);
+        quotes.set(index, quote);
+    }
+
+    @Override
+    public void deleteQuote(int id) {
+        Quote quoteToDelete = getQuote(id);
+        quotes.remove(quoteToDelete);
     }
 
     @Override
     public void createQuote(Quote quote) {
         quote.setId(quotes.size());
         quotes.add(quote);
+    }
+
+    private Quote getQuote(int id){
+        return quotes.stream().filter(quote -> quote.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 }

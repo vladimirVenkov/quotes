@@ -25,6 +25,11 @@ public class QuoteServiceImpl implements QuoteService {
     }
 
     @Override
+    public Quote getQuoteById(int id) {
+        return repository.getQuoteById(id);
+    }
+
+    @Override
     public void deleteQuote(int id) {
         Quote toDelete = repository.getAllQuotes().stream()
                 .filter(x -> x.getId() == id)

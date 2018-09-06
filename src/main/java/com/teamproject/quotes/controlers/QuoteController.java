@@ -3,14 +3,12 @@ package com.teamproject.quotes.controlers;
 import com.teamproject.quotes.Models.Quote;
 import com.teamproject.quotes.services.base.QuoteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/quotes")
 public class QuoteController {
     private QuoteService service;
 
@@ -19,9 +17,29 @@ public class QuoteController {
         this.service = service;
     }
 
-    @GetMapping("/quotes")
+    @GetMapping()
     public List<Quote> getAllQuotes() {
         return service.getAllQuotes();
+    }
+
+    @GetMapping("/{id}")
+    public Quote qetQuoteById(@PathVariable int id){
+        return service.getQuoteById(id);
+    }
+
+    @PostMapping("/new")
+    public void createQuote(@RequestBody Quote quote){
+        service.createQuote(quote);
+    }
+
+    @PutMapping("/edit/{id}")
+    public void editQuote(@RequestBody Quote quote, @PathVariable int id){
+        service.editQuote(id, quote);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteQuote(@PathVariable int id) {
+        service.deleteQuote(id);
     }
 
     //TODO other methods
