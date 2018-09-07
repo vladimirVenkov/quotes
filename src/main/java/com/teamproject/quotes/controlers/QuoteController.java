@@ -5,6 +5,7 @@ import com.teamproject.quotes.services.base.QuoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,12 +29,12 @@ public class QuoteController {
     }
 
     @PostMapping("/new")
-    public void createQuote(@RequestBody Quote quote){
+    public void createQuote(@Valid @RequestBody Quote quote){
         service.createQuote(quote);
     }
 
     @PutMapping("/edit/{id}")
-    public void editQuote(@RequestBody Quote quote, @PathVariable int id){
+    public void editQuote(@Valid @RequestBody Quote quote, @PathVariable int id){
         service.editQuote(id, quote);
     }
 

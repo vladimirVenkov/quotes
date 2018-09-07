@@ -1,11 +1,23 @@
 package com.teamproject.quotes.Models;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Quote {
 
     public int id;
+    @NotNull
+    @Size(min = 2, message = "Author's name should be at least 2 characters long!")
     public String authorName;
+    @NotNull
+    @Size(min = 3, max = 15, message = "Topic should contain between 3 and 10 characters!")
     public String topic;
+    @NotNull
+    @Size(min = 15, message = "Only quotes with 15 or more characters are accepted!")
     public String quote;
+
     public String imageUrl;
     public boolean isDeleted;
 

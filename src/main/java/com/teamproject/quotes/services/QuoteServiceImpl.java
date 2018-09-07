@@ -31,15 +31,7 @@ public class QuoteServiceImpl implements QuoteService {
 
     @Override
     public void deleteQuote(int id) {
-        Quote toDelete = repository.getAllQuotes().stream()
-                .filter(x -> x.getId() == id)
-                .findFirst()
-                .orElse(null);
-        if (toDelete.equals(null)) {
-            return;
-        }
-        toDelete.setDeleted(true);
-
+      repository.deleteQuote(id);
     }
 
     @Override
