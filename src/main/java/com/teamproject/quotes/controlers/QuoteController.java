@@ -35,6 +35,9 @@ public class QuoteController {
 
     @PutMapping("/edit/{id}")
     public void editQuote(@Valid @RequestBody Quote quote, @PathVariable int id){
+        if (id != quote.getId()) {
+            quote.setId(id);
+        }
         service.editQuote(id, quote);
     }
 

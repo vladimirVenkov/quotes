@@ -15,7 +15,7 @@ public class InMemoryQuoteRepositoryImpl implements QuoteRepository {
 
     public InMemoryQuoteRepositoryImpl() {
 
-        quotes = Arrays.asList(
+        List<Quote> temp = Arrays.asList(
                 new Quote(0,
                         "Marcus Tullius Cicero",
                         "Books",
@@ -52,6 +52,8 @@ public class InMemoryQuoteRepositoryImpl implements QuoteRepository {
                         "If it is Long, it is going to be Fun!",
                         "https://static.boredpanda.com/blog/wp-content/uploads/2016/10/rabbit-wears-sunglasses-photoshop-battle-original-edit.jpg")
         );
+        quotes = new ArrayList<>();
+        quotes.addAll(temp);
     }
 
     @Override
