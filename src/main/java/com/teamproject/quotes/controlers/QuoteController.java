@@ -9,7 +9,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/quotes")
+@RequestMapping("/api")
 public class QuoteController {
     private QuoteService service;
 
@@ -18,22 +18,22 @@ public class QuoteController {
         this.service = service;
     }
 
-    @GetMapping()
+    @GetMapping("/quotes")
     public List<Quote> getAllQuotes() {
         return service.getAllQuotes();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/quotes/{id}")
     public Quote qetQuoteById(@PathVariable int id){
         return service.getQuoteById(id);
     }
 
-    @PostMapping("/new")
+    @PostMapping("/quotes/new")
     public void createQuote(@Valid @RequestBody Quote quote){
         service.createQuote(quote);
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/quotes/edit/{id}")
     public void editQuote(@Valid @RequestBody Quote quote, @PathVariable int id){
         if (id != quote.getId()) {
             quote.setId(id);
@@ -41,7 +41,7 @@ public class QuoteController {
         service.editQuote(id, quote);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/quotes/delete/{id}")
     public void deleteQuote(@PathVariable int id) {
         service.deleteQuote(id);
     }
