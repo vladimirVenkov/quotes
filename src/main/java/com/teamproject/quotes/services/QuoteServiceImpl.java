@@ -36,6 +36,9 @@ public class QuoteServiceImpl implements QuoteService {
 
     @Override
     public void editQuote(int id, Quote quote) {
+        if (quote.getImageUrl().equals("")) {
+            quote.setImageUrl("https://www.url.com");
+        }
     repository.editQuote(id, quote);
     }
 
