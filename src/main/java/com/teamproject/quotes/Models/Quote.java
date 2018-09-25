@@ -1,42 +1,51 @@
 package com.teamproject.quotes.Models;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Entity
+@Table(name = "quotes")
 public class Quote {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "quoteid")
     private int id;
 
-    @NotNull
-    @Size(min = 2, message = "Author's name should be at least 2 characters long!")
-    private String authorName;
+    @ManyToOne
+    @JoinColumn(name = "authorid")
+    private Author author;
 
-    @NotNull
-    @Size(min = 3, max = 15, message = "Topic should contain between 3 and 10 characters!")
-    private String topic;
+    @ManyToOne
+    @JoinColumn(name = "topicid")
+    private Topic topic;
 
     @NotNull
     @Size(min = 10, message = "Only quotes with 10 or more characters are accepted!")
+    @Column(name = "quote")
     private String quote;
 
+    @Column(name = "image_url")
     private String imageUrl;
+
+    @Column(name = "is_deleted")
     private boolean isDeleted;
 
     public Quote() {
 
     }
 
-    public Quote(String authorName, String topic, String quote, String url) {
-        this.authorName = authorName;
+    public Quote(Author author, Topic topic, String quote, String url) {
+        this.author = author;
         this.topic = topic;
         this.quote = quote;
         this.imageUrl = url;
         isDeleted = false;
     }
 
-    public Quote(int id, String authorName, String topic, String quote, String url) {
+    public Quote(int id, Author author, Topic topic, String quote, String url) {
         this.id = id;
-        this.authorName = authorName;
+        this.author = author;
         this.topic = topic;
         this.quote = quote;
         this.imageUrl = url;
@@ -52,19 +61,19 @@ public class Quote {
         this.id = id;
     }
 
-    public String getAuthorName() {
-        return authorName;
+    public Author getAuthorName() {
+        return author;
     }
 
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
+    public void setAuthorName(Author author) {
+        this.author = author;
     }
 
-    public String getTopic() {
+    public Topic getTopic() {
         return topic;
     }
 
-    public void setTopic(String topic) {
+    public void setTopic(Topic topic) {
         this.topic = topic;
     }
 
