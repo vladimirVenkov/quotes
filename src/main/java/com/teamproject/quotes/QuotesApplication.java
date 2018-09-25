@@ -1,6 +1,8 @@
 package com.teamproject.quotes;
 
+import com.teamproject.quotes.Models.Author;
 import com.teamproject.quotes.Models.Quote;
+import com.teamproject.quotes.Models.Topic;
 import org.hibernate.SessionFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,6 +20,8 @@ public class QuotesApplication {
         return new org.hibernate.cfg.Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Quote.class)
+                .addAnnotatedClass(Topic.class)
+                .addAnnotatedClass(Author.class)
                 .buildSessionFactory();
     }
 }

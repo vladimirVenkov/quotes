@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -21,7 +22,19 @@ public class SqlQuoteRepository implements QuoteRepository {
 
     @Override
     public List<Quote> getAllQuotes() {
-        return null;
+        List<Quote> allQuotes = new ArrayList<>();
+
+        try (
+                Session session = sessionFactory.openSession();
+        ) {
+            session.beginTransaction();
+            allQuotes = session.createQuery("from Quote").list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Invalid Operation");
+        }
+
+        return allQuotes;
     }
 
     @Override
