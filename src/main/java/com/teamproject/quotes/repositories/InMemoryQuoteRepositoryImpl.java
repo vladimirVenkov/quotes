@@ -9,13 +9,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Repository
+//@Repository
 public class InMemoryQuoteRepositoryImpl implements QuoteRepository {
     private List<Quote> quotes;
 
+
+
     public InMemoryQuoteRepositoryImpl() {
 
-        List<Quote> temp = Arrays.asList(
+        /*List<Quote> temp = Arrays.asList(
                 new Quote(0,
                         "Marcus Tullius Cicero",
                         "Books",
@@ -53,7 +55,7 @@ public class InMemoryQuoteRepositoryImpl implements QuoteRepository {
                         "https://static.boredpanda.com/blog/wp-content/uploads/2016/10/rabbit-wears-sunglasses-photoshop-battle-original-edit.jpg")
         );
         quotes = new ArrayList<>();
-        quotes.addAll(temp);
+        quotes.addAll(temp);*/
     }
 
     @Override
