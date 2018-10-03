@@ -44,7 +44,7 @@ public class QuoteServiceImpl implements QuoteService {
 
     @Override
     public void createQuote(Quote quote) {
-    repository.createQuote(quote);
+        repository.createQuote(quote);
     }
 
     //TODO future implementation

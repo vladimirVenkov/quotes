@@ -3,7 +3,6 @@ package com.teamproject.quotes;
 import com.teamproject.quotes.Models.Author;
 import com.teamproject.quotes.Models.Quote;
 import com.teamproject.quotes.Models.Topic;
-import com.teamproject.quotes.repositories.SqlQuoteRepository;
 import com.teamproject.quotes.repositories.base.QuoteRepository;
 import com.teamproject.quotes.services.QuoteServiceImpl;
 import org.junit.Assert;
@@ -11,12 +10,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class QuoteServiceImplTests {
@@ -46,7 +45,7 @@ public class QuoteServiceImplTests {
     @Test
     public void getAllQuotes_Should_ReturnAllQuotes_WhenCalled() {
         //Arrange
-        Mockito.when(mockRepository.getAllQuotes())
+        when(mockRepository.getAllQuotes())
                 .thenReturn(defaultListOfQuotesInput);
 
         //Act
@@ -59,7 +58,7 @@ public class QuoteServiceImplTests {
     @Test
     public void getQuoteById_Should_ReturnFirstElement_WhenCalledWithId_1() {
         //Arrange
-        Mockito.when(mockRepository.getQuoteById(1))
+        when(mockRepository.getQuoteById(1))
                 .thenReturn(defaultListOfQuotesInput.get(0));
 
         //Act
@@ -70,7 +69,12 @@ public class QuoteServiceImplTests {
     }
     @Test
     public void createQuote_Should_ReturnListWithAddedElement() {
-        //Mockito
+
+        service.createQuote(firstTestInput);
+
+        verify(mockRepository).createQuote(firstTestInput);
+
+        verify(mockRepository, times(1)).createQuote(firstTestInput);
     }
 
 }
