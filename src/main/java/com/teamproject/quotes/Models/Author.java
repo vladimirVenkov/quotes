@@ -21,6 +21,11 @@ public class Author {
 
     }
 
+    public Author(int id, String authorName) {
+        this.id = id;
+        this.authorName = authorName;
+    }
+
     public int getId() {
         return id;
     }

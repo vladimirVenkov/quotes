@@ -20,6 +20,12 @@ public class Topic {
     public Topic() {
     }
 
+    public Topic(int id, String topic) {
+
+        this.id = id;
+        this.topic = topic;
+    }
+
     public int getId() {
         return id;
     }
